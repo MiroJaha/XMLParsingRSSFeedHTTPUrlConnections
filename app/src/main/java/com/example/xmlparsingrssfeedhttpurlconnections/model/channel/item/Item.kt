@@ -12,17 +12,24 @@ class Item @JvmOverloads constructor(
     @param:Element(name = "title")
     var title: String? = null,
 
-    //&#58;
+
+    @field:Element(name = "creator", required = false)
+    @param:Element(name = "creator", required = false)
+    var author: String? = "null",
     /*@field:Element(name = "dc:creator")
     @param:Element(name = "dc:creator")
-    var author: String? = null,*/
-    /*@Path("dc:creator")
-    @Text(required=false)
-    var author: String? = null,*/
+    var author: String? = "null",*/
 
-    @field:Element(name = "description")
-    @param:Element(name = "description")
-    var description : String? = null//,
+
+    @field:Element(name = "description", required = false)
+    @param:Element(name = "description", required = false)
+    var description : String? = "null",
+
+
+    @field:Element(name = "encoded", required = false)
+    @param:Element(name = "encoded", required = false)
+    var contentEncoded: String? = "null"
+
 
     /*@field:Element(name = "content:encoded")
     @param:Element(name = "content:encoded")

@@ -3,6 +3,7 @@ package com.example.xmlparsingrssfeedhttpurlconnections
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.widget.ImageView
 import android.widget.SearchView
@@ -89,10 +90,14 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Rss?>, response: Response<Rss?>) {
                 Log.d(tag, "onResponse: feed: " + response.body().toString())
                 Log.d(tag, "onResponse: Server Response: $response")
-                val channels = response.body()!!.channel?.item
+                //val channels = response.body()!!.channel?.item
+                val channels = response.body()!!.item
                 for (channel in channels!!) {
                     Log.d(tag, "onResponse: " + channel.title)
-                    questionsList2.add(Group(channel.title!!,"channel.author!!",channel.description!!,"channel.contentEncoded!!"))
+                    questionsList2.add(Group(channel.title!!,
+                        channel.author!!,
+                        channel.description!!,
+                        Html.fromHtml(Html.fromHtml(channel.contentEncoded!!).toString()).toString()))
                     adapter.notifyDataSetChanged()
                 }
             }
